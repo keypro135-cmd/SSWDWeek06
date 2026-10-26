@@ -10,11 +10,19 @@ $doctorId = $_POST['docid'];
 $patientId = $_POST['ptntid'];
 $cost = $_POST['cost'];
 
-// Build the SQL query
+// Build SQL query
 $sql = "INSERT INTO visit (visit_date, visit_time, doctor_id, patient_id, cost)
         VALUES ('$visitDate', '$visitTime', '$doctorId', '$patientId', '$cost')";
 
-// Display the SQL query for testing
-echo $sql;
+// echo $sql;
+
+// Execute SQL query
+if (mysqli_query($conn, $sql)) {
+    echo "New visit added successfully!";
+} else {
+    echo "Error: " . mysqli_error($conn);
+}
+
+mysqli_close($conn);
 
 ?>
